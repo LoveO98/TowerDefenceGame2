@@ -12,6 +12,7 @@ using TowerDefenceGame.Turrets;
 using TowerDefenceGame.Structures;
 using TowerDefenceGame.Enemies;
 using TowerDefenceGame.StateMachines.LevelState;
+using TowerDefenceGame.StateMachines.GameStates;
 using WinFormForTD;
 using System.Runtime.CompilerServices;
 
@@ -38,7 +39,7 @@ namespace TowerDefenceGame
         int counter2 = 0;
         Vector2 dotPos = new Vector2(600, 50);
 
-
+        GameStateMachine _gameManager;
         LevelStateMachine _levelManager;
         public StructureAdder _structureAdder;
 
@@ -70,6 +71,7 @@ namespace TowerDefenceGame
             Assets.LoadTextures(Content);
             _particleManager = new ParticleManager();
             _levelManager = new LevelStateMachine(this);
+            _gameManager = new GameStateMachine();
             _structureAdder = new StructureAdder(this);
         }
         
@@ -80,7 +82,8 @@ namespace TowerDefenceGame
 
             if (InputsMKB.OnPress(Keys.F)) Debug.WriteLine("dropped frames: " + (counter - counter2) + "  total frames: " + counter);
 
-            _levelManager.UpdateStateMachine(gameTime);
+            _gameManager.UpdateStateMachine(gameTime);
+            //_levelManager.UpdateStateMachine(gameTime);
             _particleManager.Update(gameTime);
 
 
@@ -93,7 +96,8 @@ namespace TowerDefenceGame
             _spriteBatch.Begin(SpriteSortMode.FrontToBack);
             
             _particleManager.Draw(_spriteBatch);
-            _levelManager.DrawStateMachine(_spriteBatch);
+            //_levelManager.DrawStateMachine(_spriteBatch);
+            _gameManager.DrawStateMachine(_spriteBatch);
             _spriteBatch.Draw(_turretFootprints, new Vector2(0, 0), Color.White);
             //_spriteBatch.Draw(_hitBoxCheck, Vector2.Zero, Color.White);
             if (counter2 % 2 == 0) _spriteBatch.Draw(Assets.pixelCircle, dotPos, Color.White);

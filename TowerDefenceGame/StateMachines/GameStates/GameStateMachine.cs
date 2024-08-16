@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static TowerDefenceGame.StateMachines.GameStates.GameStateLibrary;
-using static TowerDefenceGame.StateMachines.LevelState.LevelLibrary;
 
 namespace TowerDefenceGame.StateMachines.GameStates
 {
@@ -20,11 +19,12 @@ namespace TowerDefenceGame.StateMachines.GameStates
         {
             _stateLibrary = new GameStateLibrary(this);
             _activeState = _stateLibrary.GetGameState(GameState.menu);
+            _activeState.EnterState();
         }
 
         public override void DrawStateMachine(SpriteBatch sb)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
     }

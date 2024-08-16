@@ -81,6 +81,12 @@ namespace TowerDefenceGame.Managers
         public static Texture2D spawnerSelectOutline;
         public static Texture2D noNoZoneUI;
 
+        //Music
+        public static Song menuMusic;
+
+        //Sound effects
+        public static SoundEffect placeStructureThump;
+
         //Font
         public static SpriteFont font;
 
@@ -146,6 +152,10 @@ namespace TowerDefenceGame.Managers
             towerSelectOutline = Content.Load<Texture2D>(@"TowerSelectOutline");
             spawnerSelectOutline = Content.Load<Texture2D>(@"SpawnerSelectOutline");
             noNoZoneUI = Content.Load<Texture2D>(@"NoNoZoneUI");
+
+            menuMusic = Content.Load<Song>(@"MenuMusicTD");
+
+            placeStructureThump = Content.Load<SoundEffect>(@"PlaceStructureThump");
 
             font = Content.Load<SpriteFont>(@"File");
         }

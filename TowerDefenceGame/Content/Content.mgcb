@@ -236,6 +236,12 @@
 /processorParam:TextureFormat=Color
 /build:HeavyEnemy.png
 
+#begin MenuMusicTD.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:MenuMusicTD.mp3
+
 #begin NoNoZoneUI.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -259,6 +265,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:PixelCircle.png
+
+#begin PlaceStructureThump.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:PlaceStructureThump.mp3
 
 #begin RedRocketEnemy.png
 /importer:TextureImporter

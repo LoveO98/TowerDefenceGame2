@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WinFormForTD;
+using Microsoft.Xna.Framework.Media;
+using TowerDefenceGame.Managers;
 
 namespace TowerDefenceGame.StateMachines.GameStates
 {
@@ -16,11 +18,14 @@ namespace TowerDefenceGame.StateMachines.GameStates
 
         public MenuState(GameStateMachine machine, GameStateLibrary library) : base(machine, library)
         {
-            
+            _mainMenu = new MainMenuForm();
         }
 
         public override void EnterState()
         {
+            MediaPlayer.Play(Assets.menuMusic);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = .2f;
             _mainMenu.ExitGame += OnExitGame;
             _mainMenu.StartLevel += OnLevelPicked;
         }
@@ -38,11 +43,11 @@ namespace TowerDefenceGame.StateMachines.GameStates
 
         public override void CheckSwitchState()
         {
-            switch (_lvlNr)
-            {
-                case 0:
-                    SwitchState()
-            }
+            //switch (_lvlNr)
+            //{
+            //    case 0:
+            //        SwitchState()
+            //}
         }
 
         public void OnLevelPicked(int lvlNr)
