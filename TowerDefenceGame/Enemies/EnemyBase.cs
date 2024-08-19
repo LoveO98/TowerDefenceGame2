@@ -133,6 +133,7 @@ namespace TowerDefenceGame.Enemies
                 AttackParticles();
                 _isAttacking = true;
                 _target.TakeDamage((int)_attackDamage);
+                if (_target._sandbox && _target.Name == "City") Die();
                 return;
             }
             

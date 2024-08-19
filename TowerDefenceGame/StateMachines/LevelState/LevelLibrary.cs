@@ -23,6 +23,7 @@ namespace TowerDefenceGame.StateMachines.LevelState
             StateDictionary[StateKey.sandbox] = new SandboxState(_levelStateMachine, this);
             StateDictionary[StateKey.level1] = new Level1State(_levelStateMachine, this);
             StateDictionary[StateKey.level2] = new Level2State(_levelStateMachine, this);
+            StateDictionary[StateKey.stressTest] = new StressTestState(_levelStateMachine, this);
         }
 
     }

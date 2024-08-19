@@ -48,6 +48,7 @@ namespace TowerDefenceGame.Structures
 
         internal Vector2 _structCentre;
         public Vector2 StructCentre { get { return _structCentre;} set { _structCentre = value; } }
+        public bool _sandbox = false;
 
         public StructureBase(Vector2 pos, Texture2D tex, Texture2D structFootprint, int health, LevelStateMachine context)
         {
@@ -106,7 +107,7 @@ namespace TowerDefenceGame.Structures
 
         public abstract void Update(GameTime gameTime);
 
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             _health -= damage;
             if (_health < 0 && !_dead)
@@ -116,7 +117,6 @@ namespace TowerDefenceGame.Structures
             }
         }
         
-        //This doesn't work for the city
         public virtual void Die()
         {
             DeathParticles();

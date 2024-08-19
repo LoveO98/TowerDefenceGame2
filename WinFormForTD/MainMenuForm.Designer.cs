@@ -34,12 +34,13 @@
             this.btnMenuSandbox = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnMenuStressTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMenuLvl1
             // 
             this.btnMenuLvl1.Font = new System.Drawing.Font("Roboto Black", 15F, System.Drawing.FontStyle.Bold);
-            this.btnMenuLvl1.Location = new System.Drawing.Point(316, 192);
+            this.btnMenuLvl1.Location = new System.Drawing.Point(316, 138);
             this.btnMenuLvl1.Name = "btnMenuLvl1";
             this.btnMenuLvl1.Size = new System.Drawing.Size(172, 43);
             this.btnMenuLvl1.TabIndex = 1;
@@ -50,7 +51,7 @@
             // btnMenuLvl2
             // 
             this.btnMenuLvl2.Font = new System.Drawing.Font("Roboto Black", 15F, System.Drawing.FontStyle.Bold);
-            this.btnMenuLvl2.Location = new System.Drawing.Point(316, 255);
+            this.btnMenuLvl2.Location = new System.Drawing.Point(316, 201);
             this.btnMenuLvl2.Name = "btnMenuLvl2";
             this.btnMenuLvl2.Size = new System.Drawing.Size(172, 43);
             this.btnMenuLvl2.TabIndex = 2;
@@ -61,7 +62,7 @@
             // btnMenuExit
             // 
             this.btnMenuExit.Font = new System.Drawing.Font("Roboto Black", 15F, System.Drawing.FontStyle.Bold);
-            this.btnMenuExit.Location = new System.Drawing.Point(316, 384);
+            this.btnMenuExit.Location = new System.Drawing.Point(316, 383);
             this.btnMenuExit.Name = "btnMenuExit";
             this.btnMenuExit.Size = new System.Drawing.Size(172, 43);
             this.btnMenuExit.TabIndex = 3;
@@ -72,7 +73,7 @@
             // btnMenuSandbox
             // 
             this.btnMenuSandbox.Font = new System.Drawing.Font("Roboto Black", 15F, System.Drawing.FontStyle.Bold);
-            this.btnMenuSandbox.Location = new System.Drawing.Point(316, 320);
+            this.btnMenuSandbox.Location = new System.Drawing.Point(316, 266);
             this.btnMenuSandbox.Name = "btnMenuSandbox";
             this.btnMenuSandbox.Size = new System.Drawing.Size(172, 43);
             this.btnMenuSandbox.TabIndex = 4;
@@ -102,6 +103,17 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "By Love Olsson";
             // 
+            // btnMenuStressTest
+            // 
+            this.btnMenuStressTest.Font = new System.Drawing.Font("Roboto Black", 15F, System.Drawing.FontStyle.Bold);
+            this.btnMenuStressTest.Location = new System.Drawing.Point(316, 325);
+            this.btnMenuStressTest.Name = "btnMenuStressTest";
+            this.btnMenuStressTest.Size = new System.Drawing.Size(172, 43);
+            this.btnMenuStressTest.TabIndex = 7;
+            this.btnMenuStressTest.Text = "Stress Test";
+            this.btnMenuStressTest.UseVisualStyleBackColor = true;
+            this.btnMenuStressTest.Click += new System.EventHandler(this.btnMenuStressTest_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,6 +121,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.btnMenuStressTest);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnMenuSandbox);
@@ -133,5 +146,6 @@
         private System.Windows.Forms.Button btnMenuSandbox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnMenuStressTest;
     }
 }

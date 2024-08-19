@@ -18,6 +18,7 @@ namespace TowerDefenceGame.StateMachines
             sandbox,
             level1,
             level2,
+            stressTest,
             enemyInfo,
             structureInfo
         }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TowerDefenceGame.Enemies;
+using TowerDefenceGame.Managers;
 using TowerDefenceGame.StateMachines.LevelState;
 using TowerDefenceGame.Structures;
 
@@ -101,7 +102,9 @@ namespace TowerDefenceGame.HelpfulMethods
                 }
                 else
                 {
-                    
+                    _color = _noColor;
+                    _canPlace = false;
+                    _onTower = false;
                 }
             }
         }
@@ -112,6 +115,9 @@ namespace TowerDefenceGame.HelpfulMethods
             _structure.AddFootprint();
             if (_onTower) _tower.BuildTurretOnTop(_structure);
             _structure = null;
+            var instance = Assets.placeStructureThump.CreateInstance();
+            instance.Volume = 0.1f;
+            instance.Play();
         }
 
         public static void SelectStructure(StructureBase structure)

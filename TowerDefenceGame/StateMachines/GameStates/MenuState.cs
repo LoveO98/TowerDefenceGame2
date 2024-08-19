@@ -29,7 +29,7 @@ namespace TowerDefenceGame.StateMachines.GameStates
         {
             MediaPlayer.Play(Assets.menuMusic);
             MediaPlayer.IsRepeating = false;
-            MediaPlayer.Volume = .02f;
+            MediaPlayer.Volume = .1f;
             _mainMenu.ExitGame += OnExitGame;
             _mainMenu.StartLevel += OnLevelPicked;
             
@@ -64,6 +64,10 @@ namespace TowerDefenceGame.StateMachines.GameStates
 
                 case 3:
                     _library._selectedLevel = StateKey.sandbox;
+                    break;
+
+                case 4:
+                    _library._selectedLevel = StateKey.stressTest;
                     break;
 
 

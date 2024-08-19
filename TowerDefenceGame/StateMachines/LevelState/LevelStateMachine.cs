@@ -92,6 +92,8 @@ namespace TowerDefenceGame.StateMachines.LevelState
         public void InitializeLevelMachine(StateKey key)
         {
             _gameEnded = false;
+            _activeState = _levelLibrary.GetState(key);
+            _activeState.EnterState();
             turretFootprints.Add(new FootprintObject(Vector2.Zero, Assets.noNoZoneUI, null));
             structureFootprints.Add(new FootprintObject(Vector2.Zero, Assets.noNoZoneUI, null));
             _baseMenuForm.buyStructure += AddStructure;
@@ -105,8 +107,7 @@ namespace TowerDefenceGame.StateMachines.LevelState
             
 
 
-            _activeState = _levelLibrary.GetState(key);
-            _activeState.EnterState();
+            
             _game1.DrawOnRenderTarget(_game1._structureFootprints, structureFootprints);
             _game1.DrawOnRenderTarget(_game1._turretFootprints, turretFootprints);
             _game1.DrawOnRenderTarget(_game1._buildableFootprints, buildableFootprints);
@@ -175,6 +176,7 @@ namespace TowerDefenceGame.StateMachines.LevelState
             enemyStructures.Clear();
             disjointedAttacks.Clear();
             StructureSelector._selectedStructure = null;
+            _activeState.ExitState();
             _game1.DrawOnRenderTarget(_game1._structureFootprints, structureFootprints);
             _game1.DrawOnRenderTarget(_game1._turretFootprints, turretFootprints);
             _game1.DrawOnRenderTarget(_game1._buildableFootprints, buildableFootprints);

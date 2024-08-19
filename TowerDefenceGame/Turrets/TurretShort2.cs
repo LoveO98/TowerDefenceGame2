@@ -16,7 +16,7 @@ namespace TowerDefenceGame.Turrets
         internal Texture2D _turretCogTex;
         internal float _cogRot;
         internal bool _barrelSwitch;
-        public TurretShort2(Vector2 pos, LevelStateMachine levelContext) : base(Assets.turretShort2, pos, 120, 35, 230, 200, false, "Short Range Level 2", levelContext)
+        public TurretShort2(Vector2 pos, LevelStateMachine levelContext) : base(Assets.turretShort2, pos, 120, 45, 250, 160, false, "Short Range Level 2", levelContext)
         {
             _turretCogTex = Assets.cogIn50;
             _turretTopTex = Assets.turretBrightTopShort2;

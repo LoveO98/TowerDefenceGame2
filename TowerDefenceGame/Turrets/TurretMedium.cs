@@ -102,6 +102,7 @@ namespace TowerDefenceGame.Turrets
             {
                 case 1:
                     if (_levelContext._scrap < _upgradeScrap) return;
+                    _levelContext._scrap -= _upgradeScrap;
                     TurretBase upgradedTurret1 = new TurretMedium2(_pos, _levelContext);
                     _levelContext.turrets.Add(upgradedTurret1);
                     upgradedTurret1.AddFootprint();
@@ -118,6 +119,8 @@ namespace TowerDefenceGame.Turrets
 
                 case 2:
                     if (_levelContext._scrap < _aUpgradeScrap || _levelContext._alienScrap < _aUpgradeAlien) return;
+                    _levelContext._scrap -= _aUpgradeScrap;
+                    _levelContext._alienScrap -= _aUpgradeAlien;
                     TurretBase upgradedTurret2 = new TurretZap(_pos, _levelContext);
                     _levelContext.turrets.Add(upgradedTurret2);
                     upgradedTurret2.AddFootprint();

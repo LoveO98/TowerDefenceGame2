@@ -28,7 +28,7 @@ namespace TowerDefenceGame.Turrets
         public static int AUpgradeScrap { get { return _aUpgradeScrap; } }
         public static int AUpgradeAlien { get { return _aUpgradeAlien; } }
 
-        public TurretShort(Vector2 pos, LevelStateMachine levelContext) : base(Assets.turretShort, pos, 50, 20, 170, 350, false, "Short Range Level 1", levelContext)
+        public TurretShort(Vector2 pos, LevelStateMachine levelContext) : base(Assets.turretShort, pos, 50, 25, 200, 320, false, "Short Range Level 1", levelContext)
         {
             _turretCogTex = Assets.cogIn50;
             _turretTopTex = Assets.turretBrightTop;
@@ -94,6 +94,7 @@ namespace TowerDefenceGame.Turrets
             {
                 case 1:
                     if (_levelContext._scrap < _upgradeScrap) return;
+                    _levelContext._scrap -= _upgradeScrap;
                     TurretBase upgradedTurret1 = new TurretShort2(_pos, _levelContext);
                     _levelContext.turrets.Add(upgradedTurret1);
                     upgradedTurret1.AddFootprint();
@@ -110,6 +111,8 @@ namespace TowerDefenceGame.Turrets
 
                 case 2:
                     if (_levelContext._scrap < _aUpgradeScrap || _levelContext._alienScrap < _aUpgradeAlien) return;
+                    _levelContext._scrap -= _aUpgradeScrap;
+                    _levelContext._alienScrap -= _aUpgradeAlien;
                     TurretBase upgradedTurret2 = new TurretFire(_pos, _levelContext);
                     _levelContext.turrets.Add(upgradedTurret2);
                     upgradedTurret2.AddFootprint();

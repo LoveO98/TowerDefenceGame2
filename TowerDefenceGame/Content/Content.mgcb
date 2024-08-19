@@ -236,6 +236,24 @@
 /processorParam:TextureFormat=Color
 /build:HeavyEnemy.png
 
+#begin Hellrauser.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Hellrauser.mp3
+
+#begin Luftrauser.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Luftrauser.mp3
+
+#begin LuftrauserDamaged.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:LuftrauserDamaged.mp3
+
 #begin MenuBackground.png
 /importer:TextureImporter
 /processor:TextureProcessor

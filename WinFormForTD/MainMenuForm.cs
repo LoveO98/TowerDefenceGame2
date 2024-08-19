@@ -38,10 +38,15 @@ namespace WinFormForTD
         {
             StartLevel.Invoke(3);
         }
+        private void btnMenuStressTest_Click(object sender, EventArgs e)
+        {
+            StartLevel.Invoke(4);
+        }
 
         private void btnMenuExit_Click(object sender, EventArgs e)
         {
             ExitGame.Invoke();
         }
+
     }
 }

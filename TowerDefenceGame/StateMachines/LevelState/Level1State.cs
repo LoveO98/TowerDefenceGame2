@@ -1,11 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
+using TowerDefenceGame.Managers;
 using TowerDefenceGame.Structures;
 
 namespace TowerDefenceGame.StateMachines.LevelState
@@ -36,12 +39,16 @@ namespace TowerDefenceGame.StateMachines.LevelState
             _spawnStates2.Add(new SpawnStructureState(machine, 1200, 4000, 30, 2, false));
             _spawnStates2.Add(new SpawnStructureState(machine, 5000, 5000, 1, 4, true));
 
-            _city = new CityStructure(new Vector2(900, 700), machine);
+            _city = new CityStructure(new Vector2(900, 700), _levelStateMachine, 500);
         }
 
 
         public override void EnterState()
         {
+            MediaPlayer.Play(Assets.luftrauser);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = .1f;
+
             _levelStateMachine.enemyStructures.Add(new EnemySpawnStructure(new Vector2(100, 100), _levelStateMachine, _spawnStates1));
             _levelStateMachine.enemyStructures.Add(new EnemySpawnStructure(new Vector2(60, 300), _levelStateMachine, _spawnStates2));
             _city.ResetCity();
@@ -53,7 +60,7 @@ namespace TowerDefenceGame.StateMachines.LevelState
 
         public override void ExitState()
         {
-
+            _city.RemoveFootprint();
         }
 
         public override void UpdateState(GameTime gameTime)

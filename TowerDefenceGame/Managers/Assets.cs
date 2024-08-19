@@ -84,6 +84,9 @@ namespace TowerDefenceGame.Managers
 
         //Music
         public static Song menuMusic;
+        public static Song luftrauser;
+        public static Song hellrauser;
+        public static Song luftrauserDamaged;
 
         //Sound effects
         public static SoundEffect placeStructureThump;
@@ -156,6 +159,9 @@ namespace TowerDefenceGame.Managers
             noNoZoneUI = Content.Load<Texture2D>(@"NoNoZoneUI");
 
             menuMusic = Content.Load<Song>(@"MenuMusicTD");
+            luftrauser = Content.Load<Song>(@"Luftrauser");
+            hellrauser = Content.Load<Song>(@"Hellrauser");
+            luftrauserDamaged = Content.Load<Song>(@"LuftrauserDamaged");
 
             placeStructureThump = Content.Load<SoundEffect>(@"PlaceStructureThump");
 
