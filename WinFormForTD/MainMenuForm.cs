@@ -22,10 +22,7 @@ namespace WinFormForTD
         public event StartLevelHandler StartLevel;
         public event Action ExitGame;
 
-        private void btnMenuTutorial_Click(object sender, EventArgs e)
-        {
-            StartLevel.Invoke(0);
-        }
+        
 
         private void btnMenuLvl1_Click(object sender, EventArgs e)
         {

@@ -6,11 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using TowerDefenceGame.Managers;
 using TowerDefenceGame.StateMachines.LevelState;
+using WinFormForTD;
 
 namespace TowerDefenceGame.Turrets
 {
     internal class TurretLong : TurretBase
     {
+
+        private static int _buyCost = 200;
+        private static int _upgradeScrap = 350;
+        private static int _aUpgradeScrap = 300;
+        private static int _aUpgradeAlien = 150;
+
+        public static int BuyCost { get { return _buyCost; } }
+        public static int UpgradeScrap { get { return _upgradeScrap; } }
+        public static int AUpgradeScrap { get { return _aUpgradeScrap; } }
+        public static int AUpgradeAlien { get { return _aUpgradeAlien; } }
+
         public TurretLong(Vector2 pos, LevelStateMachine levelContext) : base(Assets.turretLong, pos, 40, 70, 550, 1100, false, "Long Range Level 1", levelContext)
         {
             targetMode = TargetMode.mostHealth;
@@ -18,6 +30,23 @@ namespace TowerDefenceGame.Turrets
             _turretGunTex = Assets.turretPointer;
             _turretInfoForm.UpgradeTurret += OnUpgrade;
             _lockOnTarget = true;
+        }
+
+        public override void InitializeUI()
+        {
+            _turretInfoForm = new TurretInfoForm();
+            _turretInfoForm.Left = 1245 + Game1._windowPosition.X;
+            _turretInfoForm.Top = 770 + Game1._windowPosition.Y;
+            _turretInfoForm.lblTurretName.Text = _name;
+            _turretInfoForm.lblTurretDamageTypeValue.Text = _damageType;
+            _turretInfoForm.lblTurretAttackSpeedValue.Text = (1000 / _attackCD).ToString(".##") + " attacks/s";
+            _turretInfoForm.lblTurretDamageValue.Text = _damage.ToString();
+            _turretInfoForm.lblTurretRangeValue.Text = _range.ToString();
+            _turretInfoForm.lblTurretHealthValue.Text = _health.ToString() + "/" + _health.ToString();
+            _turretInfoForm.cbTurretTargetingModes.SelectedIndex = (int)targetMode;
+            _turretInfoForm.lblTurretUpgradeScrapValue1.Text = UpgradeScrap.ToString();
+            _turretInfoForm.lblTurretUpgradeScrapValue2.Text = AUpgradeScrap.ToString();
+            _turretInfoForm.lblTurretUpgradeAlienScrapValue.Text = AUpgradeAlien.ToString();
         }
 
         public override void AttackParticles()
@@ -32,6 +61,7 @@ namespace TowerDefenceGame.Turrets
             switch (upgrade)
             {
                 case 1:
+                    if (_levelContext._scrap < _upgradeScrap) return;
                     TurretBase upgradedTurret1 = new TurretLong2(_pos, _levelContext);
                     _levelContext.turrets.Add(upgradedTurret1);
                     upgradedTurret1.AddFootprint();
@@ -47,6 +77,7 @@ namespace TowerDefenceGame.Turrets
                     break;
 
                 case 2:
+                    if (_levelContext._scrap < _aUpgradeScrap || _levelContext._alienScrap < _aUpgradeAlien) return;
                     TurretBase upgradedTurret2 = new TurretPierce(_pos, _levelContext);
                     _levelContext.turrets.Add(upgradedTurret2);
                     upgradedTurret2.AddFootprint();

@@ -13,90 +13,42 @@ namespace TowerDefenceGame.Structures
 {
     internal class EnemySpawnStructure : StructureBase
     {
-        int _spawnType;
-        int _spawnAmount;
+        public bool _inactive;
 
-        int _remainingSpawn;
-
-        int _spawnCD;
-        float _currentCD;
-
-        bool _isSpawning;
-        bool _inactive;
-
-        public EnemySpawnStructure(Vector2 pos, LevelStateMachine context, int spawnType, int spawnAmount, int spawnCD) : base(pos, Assets.enemySpawn, Assets.square100x100, 9000, context)
+        List<SpawnStructureState> _spawnStates;
+        SpawnStructureState _activeState;
+        
+        public EnemySpawnStructure(Vector2 pos, LevelStateMachine context, List<SpawnStructureState> spawnStates) : base(pos, Assets.enemySpawn, Assets.square100x100, 9000, context)
         {
-            _spawnType = spawnType;
-            _spawnAmount = spawnAmount;
-            _remainingSpawn = _spawnAmount;
-            _spawnCD = spawnCD;
-            _currentCD = _spawnCD;
             _name = "Enemy Spawner";
             _outlineTex = Assets.spawnerSelectOutline;
+            _spawnStates = spawnStates;
+            foreach(SpawnStructureState spawnState in _spawnStates)
+            {
+                spawnState.AssignSpawner(this);
+            }
+            _activeState = _spawnStates[0];
+            _activeState.EnterState();
         }
 
-
-        
         public override void Update(GameTime gameTime)
         {
             if (_inactive) return;
-            Spawn(gameTime);
+            _activeState.UpdateState(gameTime);
         }
 
-        public void Spawn(GameTime gameTime)
+        public void SwitchState()
         {
-
-            if (!_isSpawning)
+            if (_activeState._stop)
             {
-                _isSpawning = true;
-                switch (_spawnType)
-                {
-                    case 1:
-
-                        _levelContext.enemies.Add(new BasicEnemy(_structCentre, _levelContext));
-
-                        break;
-
-                    case 2:
-
-                        _levelContext.enemies.Add(new HeavyEnemy(_structCentre, _levelContext));
-
-                        break;
-
-                    case 3:
-
-                        _levelContext.enemies.Add(new RedRocketEnemy(_structCentre, _levelContext));
-
-                        break;
-
-                    case 4:
-
-                        _levelContext.enemies.Add(new TankEnemy(_structCentre, _levelContext));
-
-                        break;
-
-                    case 5:
-
-                        _levelContext.enemies.Add(new WalkingFortressEnemy(_structCentre, _levelContext));
-
-                        break;
-                }
-
-                _remainingSpawn--;
-                if (_remainingSpawn <= 0) Inactive();
+                Inactivate();
                 return;
             }
-
-            _currentCD -= gameTime.ElapsedGameTime.Milliseconds;
-            if (_currentCD <= 0)
-            {
-                _currentCD = _spawnCD;
-                _isSpawning = false;
-            }
+            _activeState = _spawnStates.ElementAtOrDefault(_spawnStates.IndexOf(_activeState) + 1) ?? _spawnStates[0];
+            _activeState.EnterState();
         }
 
-
-        public void Inactive()
+        public void Inactivate()
         {
             _color = Color.Gray;
             _inactive = true;

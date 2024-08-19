@@ -27,6 +27,9 @@ namespace TowerDefenceGame.StateMachines
 
 
 
-        public abstract void DrawStateMachine(SpriteBatch sb);
+        public virtual void DrawStateMachine(SpriteBatch sb)
+        {
+            _activeState.DrawState(sb);
+        }
     }
 }

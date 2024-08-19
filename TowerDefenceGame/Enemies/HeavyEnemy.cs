@@ -17,6 +17,7 @@ namespace TowerDefenceGame.Enemies
             
             _speed = 15;
             _health = 80;
+            _maxHealth = _health;
             _armour = 100;
             _scrapValue = 20;
             _alienScrapValue = 0;

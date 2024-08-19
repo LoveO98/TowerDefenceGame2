@@ -54,6 +54,7 @@ namespace TowerDefenceGame.Turrets
         public TargetMode targetMode = TargetMode.closest;
 
         public bool _lockOnTarget;
+        public bool _globalLock;
 
         internal EnemyBase _target;
         internal List<EnemyBase> _inRangeTargets = new List<EnemyBase>();
@@ -76,9 +77,6 @@ namespace TowerDefenceGame.Turrets
         static int _turretID;
         int _myID;
 
-        public int _upgradeScrap;
-        public int _aUpgradeScrap;
-        public int _aUpgradeAlien;
 
         public int MyID { get { return _myID; } }
         internal TurretBase(Texture2D tex, Vector2 pos, int health, int damage, int range, int attackCD, bool piercing, string name, LevelStateMachine context) : base(pos, tex, Assets.turretDarkCircleBase, health, context)
@@ -102,6 +100,8 @@ namespace TowerDefenceGame.Turrets
             _turretBaseTex = Assets.turretDarkCircleBase;
             _turretInfoForm.DestroyTurret += Die;
             _turretInfoForm.LockOnCheck += OnLockOnTarget;
+            _turretInfoForm.TargetModeChange += OnChangeTargetingMode;
+            _turretInfoForm.LockTargetChange += OnLockGlobal;
             _turretInfoForm.cbTurretLockOn.Checked = _lockOnTarget;
         }
 
@@ -110,6 +110,7 @@ namespace TowerDefenceGame.Turrets
             _placedOnStructure = structure;
             _onStructure = true;
             _range *= 1.2f;
+            _turretInfoForm.lblTurretRangeValue.Text = _range.ToString();
         }
 
         public override (int, int) GetUiInfo()
@@ -117,7 +118,7 @@ namespace TowerDefenceGame.Turrets
             return ((int)_damageDealt, _kills);
         }
 
-        public void InitializeUI()
+        public virtual void InitializeUI()
         {
             _turretInfoForm = new TurretInfoForm();
             _turretInfoForm.Left = 1245 + Game1._windowPosition.X;
@@ -128,7 +129,7 @@ namespace TowerDefenceGame.Turrets
             _turretInfoForm.lblTurretDamageValue.Text = _damage.ToString();
             _turretInfoForm.lblTurretRangeValue.Text = _range.ToString();
             _turretInfoForm.lblTurretHealthValue.Text = _health.ToString() + "/" + _health.ToString();
-            //_turretInfoForm.lbTurretTargetingModes.
+            _turretInfoForm.cbTurretTargetingModes.SelectedIndex = (int)targetMode;
         }
 
         public override void UpdateUI()
@@ -139,6 +140,23 @@ namespace TowerDefenceGame.Turrets
             _turretInfoForm.cbTurretLockOn.Checked = _lockOnTarget;
             _turretInfoForm.Left = 1245 + Game1._windowPosition.X;
             _turretInfoForm.Top = 770 + Game1._windowPosition.Y;
+            
+            _turretInfoForm.cbTurretIgnoreGlobalTargeting.Checked = _globalLock;
+        }
+
+        public void OnChangeTargetingMode()
+        {
+            targetMode = (TargetMode)_turretInfoForm.cbTurretTargetingModes.SelectedIndex;
+        }
+
+        public void ChangeTargetingMode(int index)
+        {
+            targetMode = (TargetMode)index;
+        }
+
+        public void OnLockGlobal()
+        {
+            _globalLock = _turretInfoForm.cbTurretIgnoreGlobalTargeting.Checked;
         }
 
         public void OnLockOnTarget()
@@ -146,10 +164,6 @@ namespace TowerDefenceGame.Turrets
             _lockOnTarget = _turretInfoForm.cbTurretLockOn.Checked;
         }
 
-        public void OnTargetMode()
-        {
-
-        }
 
         public override void ShowUI()
         {
@@ -223,6 +237,7 @@ namespace TowerDefenceGame.Turrets
             float tempValue = _inRangeTargets[0].ScrapValue + _inRangeTargets[0].AlienScrapvalue;
             float tempHealth = _inRangeTargets[0].Health + _inRangeTargets[0].Armour;
             _target = _inRangeTargets[0];
+            Debug.WriteLine("Target mode: " + targetMode);
             foreach (EnemyBase enemy in _inRangeTargets)
             {
                 float tempDistance = Vector2.Distance(enemy.Centre, _structCentre);
@@ -397,6 +412,8 @@ namespace TowerDefenceGame.Turrets
             _health = 0;
             _turretInfoForm.DestroyTurret -= Die;
             _turretInfoForm.LockOnCheck -= OnLockOnTarget;
+            _turretInfoForm.TargetModeChange -= OnChangeTargetingMode;
+            _turretInfoForm.LockTargetChange -= OnLockGlobal;
         }
 
         public abstract void AttackParticles();

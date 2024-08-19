@@ -33,6 +33,7 @@ namespace TowerDefenceGame.Managers
         //Non-Turret infrastructure / background
         public static Texture2D background1;
         public static Texture2D genericLevelBackground;
+        public static Texture2D menuBackground;
         public static Texture2D cityBase;
         public static Texture2D structureTower;
         public static Texture2D enemySpawn;
@@ -109,6 +110,7 @@ namespace TowerDefenceGame.Managers
 
             background1 = Content.Load<Texture2D>(@"Background1");
             genericLevelBackground = Content.Load<Texture2D>(@"GenericLevelBackground");
+            menuBackground = Content.Load<Texture2D>(@"MenuBackground");
             cityBase = Content.Load<Texture2D>(@"CityBase");
             structureTower = Content.Load<Texture2D>(@"StructureTower");
             enemySpawn = Content.Load<Texture2D>(@"EnemySpawn");

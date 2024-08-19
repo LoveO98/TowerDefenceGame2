@@ -333,6 +333,7 @@
             this.cbTurretTargetingModes.Name = "cbTurretTargetingModes";
             this.cbTurretTargetingModes.Size = new System.Drawing.Size(181, 27);
             this.cbTurretTargetingModes.TabIndex = 16;
+            this.cbTurretTargetingModes.SelectionChangeCommitted += new System.EventHandler(this.cbTurretTargetingModes_SelectionChangeCommitted);
             // 
             // cbTurretIgnoreGlobalTargeting
             // 
@@ -345,6 +346,7 @@
             this.cbTurretIgnoreGlobalTargeting.TabIndex = 7;
             this.cbTurretIgnoreGlobalTargeting.Text = "Ignore Global Changes";
             this.cbTurretIgnoreGlobalTargeting.UseVisualStyleBackColor = true;
+            this.cbTurretIgnoreGlobalTargeting.CheckedChanged += new System.EventHandler(this.cbTurretIgnoreGlobalTargeting_CheckedChanged);
             this.cbTurretIgnoreGlobalTargeting.MouseHover += new System.EventHandler(this.cbTurretIgnoreGlobalTargeting_MouseHover);
             // 
             // cbTurretLockOn
@@ -594,7 +596,6 @@
         private System.Windows.Forms.Label lblTurretUpgradeAlienScrap;
         private System.Windows.Forms.GroupBox gbTurretUpgradeSpecial;
         public System.Windows.Forms.Label lblTurretName;
-        private System.Windows.Forms.ComboBox cbTurretTargetingModes;
         public System.Windows.Forms.Label lblTurretDamageDealtValue;
         public System.Windows.Forms.Button btnUpgradeTurretBasic;
         public System.Windows.Forms.CheckBox cbTurretLockOn;
@@ -614,5 +615,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.GroupBox gbTurretHideUpg;
+        public System.Windows.Forms.ComboBox cbTurretTargetingModes;
     }
 }

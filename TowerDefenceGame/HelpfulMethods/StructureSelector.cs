@@ -53,7 +53,7 @@ namespace TowerDefenceGame.HelpfulMethods
 
         public static void ScanThroughStructures(StructureBase structure)
         {
-            if (Vector2.Distance(_pos, structure.StructCentre) <= 25 && structure.Name != "Tower" && structure.Name != "Enemy Spawner")
+            if (Vector2.Distance(_pos, structure.StructCentre) <= 25 && structure.Name != "Tower" && structure.Name != "Enemy Spawner" && structure.Name != "City")
             {
                 _selectedStructure = structure;
                 _outline = _selectedStructure._outlineTex;

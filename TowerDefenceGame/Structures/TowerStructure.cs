@@ -18,6 +18,9 @@ namespace TowerDefenceGame.Structures
         public StructureBase _turretOnTop;
         public TurretBase _actualTurretOnTop;
         public TowerInfoForm _towerInfoForm;
+
+        private static int _buyCost = 100;
+        public static int BuyCost { get { return _buyCost; } }
         public TowerStructure(Vector2 pos, LevelStateMachine context) : base(pos, Assets.structureTower, Assets.structureTower, 300, context)
         {
             _buildableFootprint = Assets.square50x50;

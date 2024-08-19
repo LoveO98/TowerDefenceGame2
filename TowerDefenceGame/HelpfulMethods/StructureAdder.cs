@@ -80,15 +80,17 @@ namespace TowerDefenceGame.HelpfulMethods
                         _color = _yesColor;
                         _canPlace = true;
                         _onTower = true;
+                        bool tempTowerFound = false;
                         foreach(StructureBase tower in _structure._levelContext.playerStructures)
                         {
                             if(Vector2.Distance(tower._structCentre, _pos) <= 25)
                             {
                                 _tower = tower;
+                                tempTowerFound = true;
                                 break;
                             }
                         }
-                        
+                        if (!tempTowerFound) _tower = _structure._levelContext._city;
                     }
                     else
                     {
@@ -104,7 +106,7 @@ namespace TowerDefenceGame.HelpfulMethods
             }
         }
 
-        public static void PlaceStructure(List<StructureBase> targetList, string listName)
+        public static void PlaceStructure(List<StructureBase> targetList)
         {
             targetList.Add(_structure);
             _structure.AddFootprint();

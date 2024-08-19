@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using TowerDefenceGame.Managers;
 using TowerDefenceGame.StateMachines.LevelState;
+using TowerDefenceGame.Structures;
 
 namespace TowerDefenceGame.Turrets
 {
@@ -18,6 +19,14 @@ namespace TowerDefenceGame.Turrets
             _turretTopTex = Assets.turretBrightTopPierce;
             _turretGunTex = Assets.turretPierceBarrel;
             _turretInfoForm.gbTurretHideUpg.Visible = true;
+        }
+
+        public override void PlacedOnStructure(StructureBase structure)
+        {
+            _placedOnStructure = structure;
+            _range *= 1.2f;
+            _damage = 85;
+            _damage = 160;
         }
 
         public override void AttackParticles()

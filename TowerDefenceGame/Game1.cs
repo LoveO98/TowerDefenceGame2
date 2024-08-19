@@ -15,6 +15,8 @@ using TowerDefenceGame.StateMachines.LevelState;
 using TowerDefenceGame.StateMachines.GameStates;
 using WinFormForTD;
 using System.Runtime.CompilerServices;
+using static TowerDefenceGame.StateMachines.GameStates.GameStateLibrary;
+using TowerDefenceGame.StateMachines;
 
 namespace TowerDefenceGame
 {
@@ -41,6 +43,7 @@ namespace TowerDefenceGame
 
         GameStateMachine _gameManager;
         LevelStateMachine _levelManager;
+        RunningLevelState _levelRunner;
         public StructureAdder _structureAdder;
 
         static Game1 _thisGame;
@@ -72,6 +75,10 @@ namespace TowerDefenceGame
             _particleManager = new ParticleManager();
             _levelManager = new LevelStateMachine(this);
             _gameManager = new GameStateMachine();
+            //This is my attempt at avoiding having too many connections between the states
+            //This was added really late into the project, so while a redesign probably would have been better I did not have the time
+            _levelRunner = (RunningLevelState)_gameManager._stateLibrary.StateDictionary[BaseStateLibrary.StateKey.runLevel];
+            _levelRunner._levelStateMachine = _levelManager;
             _structureAdder = new StructureAdder(this);
         }
         
@@ -108,7 +115,6 @@ namespace TowerDefenceGame
 
         public void DrawOnRenderTarget(RenderTarget2D target, List<FootprintObject> footprints)
         {
-            Debug.WriteLine("Draw on render target");
             GraphicsDevice.SetRenderTarget(target);
             GraphicsDevice.Clear(Color.Transparent);
             _spriteBatch.Begin();
@@ -166,7 +172,6 @@ namespace TowerDefenceGame
                 
                 if (pixels1[i].A > 0.0f && pixels2[i].A > 0.0f)
                 {
-                    Debug.WriteLine("return false");
                     return false;
                 }
             }

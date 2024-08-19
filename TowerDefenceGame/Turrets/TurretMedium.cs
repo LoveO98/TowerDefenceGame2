@@ -1,44 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using TowerDefenceGame.Enemies;
+using TowerDefenceGame.HelpfulMethods;
 using TowerDefenceGame.Managers;
 using TowerDefenceGame.StateMachines.LevelState;
 using WinFormForTD;
 
 namespace TowerDefenceGame.Turrets
 {
-    internal class TurretShort : TurretBase
+    internal class TurretMedium : TurretBase
     {
 
-        internal Texture2D _turretCogTex;
-        internal float _cogRot;
-
-        
-        private static int _buyCost = 150;
-        private static int _upgradeScrap = 300;
+        private static int _buyCost = 180;
+        private static int _upgradeScrap = 275;
         private static int _aUpgradeScrap = 250;
-        private static int _aUpgradeAlien = 180;
+        private static int _aUpgradeAlien = 250;
 
         public static int BuyCost { get { return _buyCost; } }
         public static int UpgradeScrap { get { return _upgradeScrap; } }
         public static int AUpgradeScrap { get { return _aUpgradeScrap; } }
         public static int AUpgradeAlien { get { return _aUpgradeAlien; } }
 
-        public TurretShort(Vector2 pos, LevelStateMachine levelContext) : base(Assets.turretShort, pos, 50, 20, 170, 350, false, "Short Range Level 1", levelContext)
+        public TurretMedium(Vector2 pos, LevelStateMachine levelContext) : base(Assets.turretMedium, pos, 90, 45, 300, 1800, false, "Medium Range Level 1", levelContext)
         {
-            _turretCogTex = Assets.cogIn50;
+            targetMode = TargetMode.mostHealth;
             _turretTopTex = Assets.turretBrightTop;
-            _turretGunTex = Assets.turretRedPipe;
-
+            _turretGunTex = Assets.turretCannon;
             _turretInfoForm.UpgradeTurret += OnUpgrade;
-
-            
-
+            _lockOnTarget = true;
         }
+
         public override void InitializeUI()
         {
             _turretInfoForm = new TurretInfoForm();
@@ -58,35 +53,48 @@ namespace TowerDefenceGame.Turrets
 
         public override void AttackParticles()
         {
-            ParticleManager.CreateStatParticleTopDown(Assets.sparkTex, _structCentre + (_targetDir * 30), 55, 0, 1.1f, 1.3f, 0, _gunRot, 0, Color.Yellow, new Color(Color.Orange, 20));
-            ParticleManager.CreateStatParticleTopDown(Assets.sparkCircleTex, _target.Centre, 175, 0, 0.7f, 1.2f, 0, 0, 0, Color.Orange, new Color(Color.Orange, 20));
+            for (int i = 0; i < 7; i++)
+            {
+                ParticleManager.CreateParticleTopDown(Assets.gasBallTex, _structCentre, Vector2.Normalize(_target.Centre - _structCentre), 10, 1, 0.2f, 1.5f, 500, 300, 200, 1, 1.8f, 1, 0, 1, Color.Gray, new Color(Color.Gray, 20), new Color(Color.Black, 20));
+                ParticleManager.CreateParticleTopDown(Assets.gasBallTex, _target.Centre, new Vector2(1, 0), 10, 2, 0.5f, 2, 500, 150, 350, 0.8f, 1.2f, 1.3f, 0, 1, Color.Red, new Color(Color.Red, 20), new Color(Color.Black, 20));
+            }   
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Attack(GameTime gameTime)
         {
             if (_target != null)
             {
-                TargetCheck();
-                _cogRot += 0.08f;
+                SetDirection();
+                if (!_isAttacking)
+                {
+                    _currentCD = _attackCD;
+                    AttackParticles();
+                    _isAttacking = true;
+                    _levelContext.disjointedAttacks.Add(new TarArea(_target.Centre, 50, 3000, 0.6f, this, _levelContext));
+                    AOECheck();
+                }
             }
-            else
+            _currentCD -= gameTime.ElapsedGameTime.Milliseconds;
+            if (_currentCD <= 0)
             {
-                GetTarget();
-                _cogRot += 0.01f;
+                _isAttacking = false;
             }
-
-            if (_target != null) Attack(gameTime);
         }
 
-
-        public override void Draw(SpriteBatch sb)
+        private void AOECheck()
         {
-            sb.Draw(_turretBaseTex, _pos, null, _color, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.31f);
-            sb.Draw(_turretCogTex, _pos + new Vector2(25, 25), null, _color, _cogRot, new Vector2(25, 25), 1f, SpriteEffects.None, 0.32f);
-            sb.Draw(_turretTopTex, _pos, null, _color, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.33f);
-            sb.Draw(_turretGunTex, _pos + new Vector2(25, 25), null, _color, _gunRot, new Vector2(25, 25), 1f, SpriteEffects.None, 0.34f);
+            for (int i = 0; _levelContext.enemies.Count > i; i++)
+            {
+                if (Vector2.Distance(_levelContext.enemies[i].Centre, _target.Centre) < 60)
+                {
+                    bool kill = false;
+                    float damage;
+                    (damage, kill) = _levelContext.enemies[i].TakeDamage(_damage, _piercing);
+                    _damageDealt += damage;
+                    if (kill) _kills++;
+                }
+            }
         }
-        
 
         public void OnUpgrade(int upgrade)
         {
@@ -94,7 +102,7 @@ namespace TowerDefenceGame.Turrets
             {
                 case 1:
                     if (_levelContext._scrap < _upgradeScrap) return;
-                    TurretBase upgradedTurret1 = new TurretShort2(_pos, _levelContext);
+                    TurretBase upgradedTurret1 = new TurretMedium2(_pos, _levelContext);
                     _levelContext.turrets.Add(upgradedTurret1);
                     upgradedTurret1.AddFootprint();
                     upgradedTurret1.targetMode = targetMode;
@@ -110,7 +118,7 @@ namespace TowerDefenceGame.Turrets
 
                 case 2:
                     if (_levelContext._scrap < _aUpgradeScrap || _levelContext._alienScrap < _aUpgradeAlien) return;
-                    TurretBase upgradedTurret2 = new TurretFire(_pos, _levelContext);
+                    TurretBase upgradedTurret2 = new TurretZap(_pos, _levelContext);
                     _levelContext.turrets.Add(upgradedTurret2);
                     upgradedTurret2.AddFootprint();
                     upgradedTurret2.targetMode = targetMode;
@@ -123,7 +131,6 @@ namespace TowerDefenceGame.Turrets
                         upgradedTurret2.PlacedOnStructure(_placedOnStructure);
                     }
                     break;
-
             }
             _turretInfoForm.UpgradeTurret -= OnUpgrade;
             Die();

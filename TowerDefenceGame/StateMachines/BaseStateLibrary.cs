@@ -9,11 +9,31 @@ namespace TowerDefenceGame.StateMachines
 {
     internal abstract class BaseStateLibrary
     {
-        
+
+        public enum StateKey
+        {
+            menu,
+            runLevel,
+            infoPage,
+            sandbox,
+            level1,
+            level2,
+            enemyInfo,
+            structureInfo
+        }
+
+        public StateKey _selectedLevel = StateKey.sandbox;
+
+        public Dictionary<StateKey, BaseState> StateDictionary;
+
         public BaseStateLibrary()
         {
             
         }
 
+        internal BaseState GetState(StateKey key)
+        {
+            return StateDictionary[key];
+        }
     }
 }

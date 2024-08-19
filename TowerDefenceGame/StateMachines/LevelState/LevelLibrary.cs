@@ -12,28 +12,18 @@ namespace TowerDefenceGame.StateMachines.LevelState
 
         internal LevelStateMachine _levelStateMachine;
 
-        public enum LevelKey
-        {
-            sandbox
-        }
-
-        public LevelKey levelKey;
-
-        internal Dictionary<LevelKey, BaseState> LevelDictionary = new Dictionary<LevelKey, BaseState>();
-
-        public LevelLibrary(LevelStateMachine machine)
-        {
-            _levelStateMachine = machine;
-            LevelDictionary[LevelKey.sandbox] = new SandboxState(_levelStateMachine, this);
-        }
+        public StateKey _levelKey;
 
         
 
-        internal BaseState GetLevelState(LevelKey key)
+        public LevelLibrary(LevelStateMachine machine)
         {
-            return LevelDictionary[key];
+            StateDictionary = new Dictionary<StateKey, BaseState>();
+            _levelStateMachine = machine;
+            StateDictionary[StateKey.sandbox] = new SandboxState(_levelStateMachine, this);
+            StateDictionary[StateKey.level1] = new Level1State(_levelStateMachine, this);
+            StateDictionary[StateKey.level2] = new Level2State(_levelStateMachine, this);
         }
-
 
     }
 }

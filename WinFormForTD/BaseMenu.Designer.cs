@@ -31,10 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseMenu));
             this.labelTurretName = new System.Windows.Forms.Label();
             this.gbBaseResources = new System.Windows.Forms.GroupBox();
+            this.lblBaseHealthValue = new System.Windows.Forms.Label();
+            this.lblBaseEnemiesKilledValue = new System.Windows.Forms.Label();
+            this.lblBaseAlienScrapValue = new System.Windows.Forms.Label();
+            this.lblBaseScrapValue = new System.Windows.Forms.Label();
+            this.lblBaseEnemiesKilled = new System.Windows.Forms.Label();
             this.lblBaseHealth = new System.Windows.Forms.Label();
             this.lblBaseAlienScrap = new System.Windows.Forms.Label();
             this.lblBaseScrap = new System.Windows.Forms.Label();
             this.gbBaseBuildTurret = new System.Windows.Forms.GroupBox();
+            this.gbBaseTower = new System.Windows.Forms.GroupBox();
+            this.pbBaseTower = new System.Windows.Forms.PictureBox();
+            this.lblBaseBuyTowerCost = new System.Windows.Forms.Label();
+            this.btnBaseBuyTower = new System.Windows.Forms.Button();
+            this.lblBaseBuyTowerCostValue = new System.Windows.Forms.Label();
             this.gbBaseLong = new System.Windows.Forms.GroupBox();
             this.pbBaseLong = new System.Windows.Forms.PictureBox();
             this.lblBaseBuyLongCost = new System.Windows.Forms.Label();
@@ -55,18 +65,10 @@
             this.btnBaseUnlockAll = new System.Windows.Forms.Button();
             this.btnBaseApplyRules = new System.Windows.Forms.Button();
             this.cbBaseTargetingModes = new System.Windows.Forms.ComboBox();
-            this.lblBaseEnemiesKilled = new System.Windows.Forms.Label();
-            this.lblBaseScrapValue = new System.Windows.Forms.Label();
-            this.lblBaseAlienScrapValue = new System.Windows.Forms.Label();
-            this.lblBaseEnemiesKilledValue = new System.Windows.Forms.Label();
-            this.gbBaseTower = new System.Windows.Forms.GroupBox();
-            this.pbBaseTower = new System.Windows.Forms.PictureBox();
-            this.lblBaseBuyTowerCost = new System.Windows.Forms.Label();
-            this.btnBaseBuyTower = new System.Windows.Forms.Button();
-            this.lblBaseBuyTowerCostValue = new System.Windows.Forms.Label();
-            this.lblBaseHealthValue = new System.Windows.Forms.Label();
             this.gbBaseResources.SuspendLayout();
             this.gbBaseBuildTurret.SuspendLayout();
+            this.gbBaseTower.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBaseTower)).BeginInit();
             this.gbBaseLong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBaseLong)).BeginInit();
             this.gbBaseMedium.SuspendLayout();
@@ -74,8 +76,6 @@
             this.gbBaseShort.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBaseShort)).BeginInit();
             this.gbBaseGlobalRules.SuspendLayout();
-            this.gbBaseTower.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBaseTower)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTurretName
@@ -111,6 +111,61 @@
             this.gbBaseResources.TabIndex = 5;
             this.gbBaseResources.TabStop = false;
             this.gbBaseResources.Text = "Resources";
+            // 
+            // lblBaseHealthValue
+            // 
+            this.lblBaseHealthValue.AutoSize = true;
+            this.lblBaseHealthValue.Font = new System.Drawing.Font("Roboto", 12F);
+            this.lblBaseHealthValue.Location = new System.Drawing.Point(122, 24);
+            this.lblBaseHealthValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaseHealthValue.Name = "lblBaseHealthValue";
+            this.lblBaseHealthValue.Size = new System.Drawing.Size(70, 19);
+            this.lblBaseHealthValue.TabIndex = 20;
+            this.lblBaseHealthValue.Text = "000/000";
+            // 
+            // lblBaseEnemiesKilledValue
+            // 
+            this.lblBaseEnemiesKilledValue.AutoSize = true;
+            this.lblBaseEnemiesKilledValue.Font = new System.Drawing.Font("Roboto", 10F);
+            this.lblBaseEnemiesKilledValue.Location = new System.Drawing.Point(115, 68);
+            this.lblBaseEnemiesKilledValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaseEnemiesKilledValue.Name = "lblBaseEnemiesKilledValue";
+            this.lblBaseEnemiesKilledValue.Size = new System.Drawing.Size(32, 17);
+            this.lblBaseEnemiesKilledValue.TabIndex = 19;
+            this.lblBaseEnemiesKilledValue.Text = "000";
+            // 
+            // lblBaseAlienScrapValue
+            // 
+            this.lblBaseAlienScrapValue.AutoSize = true;
+            this.lblBaseAlienScrapValue.Font = new System.Drawing.Font("Roboto", 10F);
+            this.lblBaseAlienScrapValue.Location = new System.Drawing.Point(218, 50);
+            this.lblBaseAlienScrapValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaseAlienScrapValue.Name = "lblBaseAlienScrapValue";
+            this.lblBaseAlienScrapValue.Size = new System.Drawing.Size(32, 17);
+            this.lblBaseAlienScrapValue.TabIndex = 18;
+            this.lblBaseAlienScrapValue.Text = "000";
+            // 
+            // lblBaseScrapValue
+            // 
+            this.lblBaseScrapValue.AutoSize = true;
+            this.lblBaseScrapValue.Font = new System.Drawing.Font("Roboto", 10F);
+            this.lblBaseScrapValue.Location = new System.Drawing.Point(57, 50);
+            this.lblBaseScrapValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaseScrapValue.Name = "lblBaseScrapValue";
+            this.lblBaseScrapValue.Size = new System.Drawing.Size(32, 17);
+            this.lblBaseScrapValue.TabIndex = 17;
+            this.lblBaseScrapValue.Text = "000";
+            // 
+            // lblBaseEnemiesKilled
+            // 
+            this.lblBaseEnemiesKilled.AutoSize = true;
+            this.lblBaseEnemiesKilled.Font = new System.Drawing.Font("Roboto Medium", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBaseEnemiesKilled.Location = new System.Drawing.Point(12, 68);
+            this.lblBaseEnemiesKilled.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaseEnemiesKilled.Name = "lblBaseEnemiesKilled";
+            this.lblBaseEnemiesKilled.Size = new System.Drawing.Size(108, 15);
+            this.lblBaseEnemiesKilled.TabIndex = 7;
+            this.lblBaseEnemiesKilled.Text = "Enemies Killed:";
             // 
             // lblBaseHealth
             // 
@@ -161,6 +216,68 @@
             this.gbBaseBuildTurret.TabIndex = 7;
             this.gbBaseBuildTurret.TabStop = false;
             this.gbBaseBuildTurret.Text = "Buy Structure";
+            // 
+            // gbBaseTower
+            // 
+            this.gbBaseTower.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.gbBaseTower.Controls.Add(this.pbBaseTower);
+            this.gbBaseTower.Controls.Add(this.lblBaseBuyTowerCost);
+            this.gbBaseTower.Controls.Add(this.btnBaseBuyTower);
+            this.gbBaseTower.Controls.Add(this.lblBaseBuyTowerCostValue);
+            this.gbBaseTower.Location = new System.Drawing.Point(11, 275);
+            this.gbBaseTower.Name = "gbBaseTower";
+            this.gbBaseTower.Size = new System.Drawing.Size(264, 75);
+            this.gbBaseTower.TabIndex = 19;
+            this.gbBaseTower.TabStop = false;
+            this.gbBaseTower.Text = "Tower";
+            // 
+            // pbBaseTower
+            // 
+            this.pbBaseTower.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbBaseTower.BackgroundImage")));
+            this.pbBaseTower.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbBaseTower.InitialImage = null;
+            this.pbBaseTower.Location = new System.Drawing.Point(205, 17);
+            this.pbBaseTower.Name = "pbBaseTower";
+            this.pbBaseTower.Size = new System.Drawing.Size(50, 50);
+            this.pbBaseTower.TabIndex = 16;
+            this.pbBaseTower.TabStop = false;
+            // 
+            // lblBaseBuyTowerCost
+            // 
+            this.lblBaseBuyTowerCost.AutoSize = true;
+            this.lblBaseBuyTowerCost.Font = new System.Drawing.Font("Roboto Medium", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblBaseBuyTowerCost.Location = new System.Drawing.Point(7, 21);
+            this.lblBaseBuyTowerCost.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaseBuyTowerCost.Name = "lblBaseBuyTowerCost";
+            this.lblBaseBuyTowerCost.Size = new System.Drawing.Size(84, 15);
+            this.lblBaseBuyTowerCost.TabIndex = 4;
+            this.lblBaseBuyTowerCost.Text = "Scrap Cost:";
+            // 
+            // btnBaseBuyTower
+            // 
+            this.btnBaseBuyTower.BackColor = System.Drawing.Color.OldLace;
+            this.btnBaseBuyTower.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBaseBuyTower.Font = new System.Drawing.Font("Roboto Black", 9F, System.Drawing.FontStyle.Bold);
+            this.btnBaseBuyTower.ForeColor = System.Drawing.Color.Black;
+            this.btnBaseBuyTower.Location = new System.Drawing.Point(9, 38);
+            this.btnBaseBuyTower.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBaseBuyTower.Name = "btnBaseBuyTower";
+            this.btnBaseBuyTower.Size = new System.Drawing.Size(186, 29);
+            this.btnBaseBuyTower.TabIndex = 3;
+            this.btnBaseBuyTower.Text = "BUY TURRET";
+            this.btnBaseBuyTower.UseVisualStyleBackColor = false;
+            this.btnBaseBuyTower.Click += new System.EventHandler(this.btnBaseBuyTower_Click);
+            // 
+            // lblBaseBuyTowerCostValue
+            // 
+            this.lblBaseBuyTowerCostValue.AutoSize = true;
+            this.lblBaseBuyTowerCostValue.Font = new System.Drawing.Font("Roboto", 10F);
+            this.lblBaseBuyTowerCostValue.Location = new System.Drawing.Point(94, 21);
+            this.lblBaseBuyTowerCostValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaseBuyTowerCostValue.Name = "lblBaseBuyTowerCostValue";
+            this.lblBaseBuyTowerCostValue.Size = new System.Drawing.Size(32, 17);
+            this.lblBaseBuyTowerCostValue.TabIndex = 15;
+            this.lblBaseBuyTowerCostValue.Text = "000";
             // 
             // gbBaseLong
             // 
@@ -393,6 +510,7 @@
             this.btnBaseUnlockAll.TabIndex = 18;
             this.btnBaseUnlockAll.Text = "UNLOCK ALL TURRETS";
             this.btnBaseUnlockAll.UseVisualStyleBackColor = false;
+            this.btnBaseUnlockAll.Click += new System.EventHandler(this.btnBaseUnlockAll_Click);
             // 
             // btnBaseApplyRules
             // 
@@ -407,6 +525,7 @@
             this.btnBaseApplyRules.TabIndex = 17;
             this.btnBaseApplyRules.Text = "APPLY RULES";
             this.btnBaseApplyRules.UseVisualStyleBackColor = false;
+            this.btnBaseApplyRules.Click += new System.EventHandler(this.btnBaseApplyRules_Click);
             // 
             // cbBaseTargetingModes
             // 
@@ -414,129 +533,20 @@
             this.cbBaseTargetingModes.FormattingEnabled = true;
             this.cbBaseTargetingModes.IntegralHeight = false;
             this.cbBaseTargetingModes.ItemHeight = 19;
+            this.cbBaseTargetingModes.Items.AddRange(new object[] {
+            "closest",
+            "furthest",
+            "mostHealth",
+            "leastHealth",
+            "mostTotHealth",
+            "mostValue",
+            "leastValue"});
             this.cbBaseTargetingModes.Location = new System.Drawing.Point(11, 77);
             this.cbBaseTargetingModes.Margin = new System.Windows.Forms.Padding(4);
             this.cbBaseTargetingModes.MaxDropDownItems = 7;
             this.cbBaseTargetingModes.Name = "cbBaseTargetingModes";
             this.cbBaseTargetingModes.Size = new System.Drawing.Size(181, 27);
             this.cbBaseTargetingModes.TabIndex = 6;
-            // 
-            // lblBaseEnemiesKilled
-            // 
-            this.lblBaseEnemiesKilled.AutoSize = true;
-            this.lblBaseEnemiesKilled.Font = new System.Drawing.Font("Roboto Medium", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBaseEnemiesKilled.Location = new System.Drawing.Point(12, 68);
-            this.lblBaseEnemiesKilled.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBaseEnemiesKilled.Name = "lblBaseEnemiesKilled";
-            this.lblBaseEnemiesKilled.Size = new System.Drawing.Size(108, 15);
-            this.lblBaseEnemiesKilled.TabIndex = 7;
-            this.lblBaseEnemiesKilled.Text = "Enemies Killed:";
-            // 
-            // lblBaseScrapValue
-            // 
-            this.lblBaseScrapValue.AutoSize = true;
-            this.lblBaseScrapValue.Font = new System.Drawing.Font("Roboto", 10F);
-            this.lblBaseScrapValue.Location = new System.Drawing.Point(57, 50);
-            this.lblBaseScrapValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBaseScrapValue.Name = "lblBaseScrapValue";
-            this.lblBaseScrapValue.Size = new System.Drawing.Size(32, 17);
-            this.lblBaseScrapValue.TabIndex = 17;
-            this.lblBaseScrapValue.Text = "000";
-            // 
-            // lblBaseAlienScrapValue
-            // 
-            this.lblBaseAlienScrapValue.AutoSize = true;
-            this.lblBaseAlienScrapValue.Font = new System.Drawing.Font("Roboto", 10F);
-            this.lblBaseAlienScrapValue.Location = new System.Drawing.Point(218, 50);
-            this.lblBaseAlienScrapValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBaseAlienScrapValue.Name = "lblBaseAlienScrapValue";
-            this.lblBaseAlienScrapValue.Size = new System.Drawing.Size(32, 17);
-            this.lblBaseAlienScrapValue.TabIndex = 18;
-            this.lblBaseAlienScrapValue.Text = "000";
-            // 
-            // lblBaseEnemiesKilledValue
-            // 
-            this.lblBaseEnemiesKilledValue.AutoSize = true;
-            this.lblBaseEnemiesKilledValue.Font = new System.Drawing.Font("Roboto", 10F);
-            this.lblBaseEnemiesKilledValue.Location = new System.Drawing.Point(115, 68);
-            this.lblBaseEnemiesKilledValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBaseEnemiesKilledValue.Name = "lblBaseEnemiesKilledValue";
-            this.lblBaseEnemiesKilledValue.Size = new System.Drawing.Size(32, 17);
-            this.lblBaseEnemiesKilledValue.TabIndex = 19;
-            this.lblBaseEnemiesKilledValue.Text = "000";
-            // 
-            // gbBaseTower
-            // 
-            this.gbBaseTower.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.gbBaseTower.Controls.Add(this.pbBaseTower);
-            this.gbBaseTower.Controls.Add(this.lblBaseBuyTowerCost);
-            this.gbBaseTower.Controls.Add(this.btnBaseBuyTower);
-            this.gbBaseTower.Controls.Add(this.lblBaseBuyTowerCostValue);
-            this.gbBaseTower.Location = new System.Drawing.Point(11, 275);
-            this.gbBaseTower.Name = "gbBaseTower";
-            this.gbBaseTower.Size = new System.Drawing.Size(264, 75);
-            this.gbBaseTower.TabIndex = 19;
-            this.gbBaseTower.TabStop = false;
-            this.gbBaseTower.Text = "Tower";
-            // 
-            // pbBaseTower
-            // 
-            this.pbBaseTower.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbBaseTower.BackgroundImage")));
-            this.pbBaseTower.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbBaseTower.InitialImage = null;
-            this.pbBaseTower.Location = new System.Drawing.Point(205, 17);
-            this.pbBaseTower.Name = "pbBaseTower";
-            this.pbBaseTower.Size = new System.Drawing.Size(50, 50);
-            this.pbBaseTower.TabIndex = 16;
-            this.pbBaseTower.TabStop = false;
-            // 
-            // lblBaseBuyTowerCost
-            // 
-            this.lblBaseBuyTowerCost.AutoSize = true;
-            this.lblBaseBuyTowerCost.Font = new System.Drawing.Font("Roboto Medium", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.lblBaseBuyTowerCost.Location = new System.Drawing.Point(7, 21);
-            this.lblBaseBuyTowerCost.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBaseBuyTowerCost.Name = "lblBaseBuyTowerCost";
-            this.lblBaseBuyTowerCost.Size = new System.Drawing.Size(84, 15);
-            this.lblBaseBuyTowerCost.TabIndex = 4;
-            this.lblBaseBuyTowerCost.Text = "Scrap Cost:";
-            // 
-            // btnBaseBuyTower
-            // 
-            this.btnBaseBuyTower.BackColor = System.Drawing.Color.OldLace;
-            this.btnBaseBuyTower.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBaseBuyTower.Font = new System.Drawing.Font("Roboto Black", 9F, System.Drawing.FontStyle.Bold);
-            this.btnBaseBuyTower.ForeColor = System.Drawing.Color.Black;
-            this.btnBaseBuyTower.Location = new System.Drawing.Point(9, 38);
-            this.btnBaseBuyTower.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBaseBuyTower.Name = "btnBaseBuyTower";
-            this.btnBaseBuyTower.Size = new System.Drawing.Size(186, 29);
-            this.btnBaseBuyTower.TabIndex = 3;
-            this.btnBaseBuyTower.Text = "BUY TURRET";
-            this.btnBaseBuyTower.UseVisualStyleBackColor = false;
-            this.btnBaseBuyTower.Click += new System.EventHandler(this.btnBaseBuyTower_Click);
-            // 
-            // lblBaseBuyTowerCostValue
-            // 
-            this.lblBaseBuyTowerCostValue.AutoSize = true;
-            this.lblBaseBuyTowerCostValue.Font = new System.Drawing.Font("Roboto", 10F);
-            this.lblBaseBuyTowerCostValue.Location = new System.Drawing.Point(94, 21);
-            this.lblBaseBuyTowerCostValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBaseBuyTowerCostValue.Name = "lblBaseBuyTowerCostValue";
-            this.lblBaseBuyTowerCostValue.Size = new System.Drawing.Size(32, 17);
-            this.lblBaseBuyTowerCostValue.TabIndex = 15;
-            this.lblBaseBuyTowerCostValue.Text = "000";
-            // 
-            // lblBaseHealthValue
-            // 
-            this.lblBaseHealthValue.AutoSize = true;
-            this.lblBaseHealthValue.Font = new System.Drawing.Font("Roboto", 12F);
-            this.lblBaseHealthValue.Location = new System.Drawing.Point(122, 24);
-            this.lblBaseHealthValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBaseHealthValue.Name = "lblBaseHealthValue";
-            this.lblBaseHealthValue.Size = new System.Drawing.Size(70, 19);
-            this.lblBaseHealthValue.TabIndex = 20;
-            this.lblBaseHealthValue.Text = "000/000";
             // 
             // BaseMenu
             // 
@@ -564,6 +574,9 @@
             this.gbBaseResources.ResumeLayout(false);
             this.gbBaseResources.PerformLayout();
             this.gbBaseBuildTurret.ResumeLayout(false);
+            this.gbBaseTower.ResumeLayout(false);
+            this.gbBaseTower.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBaseTower)).EndInit();
             this.gbBaseLong.ResumeLayout(false);
             this.gbBaseLong.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBaseLong)).EndInit();
@@ -574,9 +587,6 @@
             this.gbBaseShort.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBaseShort)).EndInit();
             this.gbBaseGlobalRules.ResumeLayout(false);
-            this.gbBaseTower.ResumeLayout(false);
-            this.gbBaseTower.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBaseTower)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -590,7 +600,6 @@
         private System.Windows.Forms.Label lblBaseAlienScrap;
         private System.Windows.Forms.Label lblBaseHealth;
         private System.Windows.Forms.GroupBox gbBaseBuildTurret;
-        private System.Windows.Forms.Label lblBaseBuyShortCostValue;
         private System.Windows.Forms.Label lblBaseBuyShortCost;
         private System.Windows.Forms.Button btnBaseBuyShort;
         private System.Windows.Forms.GroupBox gbBaseShort;
@@ -598,13 +607,11 @@
         private System.Windows.Forms.PictureBox pbBaseMedium;
         private System.Windows.Forms.Label lblBaseBuyMediumCost;
         private System.Windows.Forms.Button btnBaseBuyMedium;
-        private System.Windows.Forms.Label lblBaseBuyMediumCostValue;
         private System.Windows.Forms.PictureBox pbBaseShort;
         private System.Windows.Forms.GroupBox gbBaseLong;
         private System.Windows.Forms.PictureBox pbBaseLong;
         private System.Windows.Forms.Label lblBaseBuyLongCost;
         private System.Windows.Forms.Button btnBaseBuyLong;
-        private System.Windows.Forms.Label lblBaseBuyLongCostValue;
         private System.Windows.Forms.Button btnBaseExit;
         private System.Windows.Forms.GroupBox gbBaseGlobalRules;
         private System.Windows.Forms.Button btnBaseUnlockAll;
@@ -617,8 +624,11 @@
         private System.Windows.Forms.PictureBox pbBaseTower;
         private System.Windows.Forms.Label lblBaseBuyTowerCost;
         private System.Windows.Forms.Button btnBaseBuyTower;
-        private System.Windows.Forms.Label lblBaseBuyTowerCostValue;
         public System.Windows.Forms.ComboBox cbBaseTargetingModes;
         public System.Windows.Forms.Label lblBaseHealthValue;
+        public System.Windows.Forms.Label lblBaseBuyShortCostValue;
+        public System.Windows.Forms.Label lblBaseBuyMediumCostValue;
+        public System.Windows.Forms.Label lblBaseBuyLongCostValue;
+        public System.Windows.Forms.Label lblBaseBuyTowerCostValue;
     }
 }

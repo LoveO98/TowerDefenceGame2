@@ -17,6 +17,8 @@ namespace WinFormForTD
         public delegate void UpgradeTurretHandler(int upgrade);
         public event UpgradeTurretHandler UpgradeTurret;
         public event Action LockOnCheck;
+        public event Action LockTargetChange;
+        public event Action TargetModeChange;
 
         public TurretInfoForm()
         {
@@ -46,6 +48,18 @@ namespace WinFormForTD
         private void cbTurretLockOn_CheckedChanged(object sender, EventArgs e)
         {
             LockOnCheck.Invoke();
+        }
+
+        private void cbTurretIgnoreGlobalTargeting_CheckedChanged(object sender, EventArgs e)
+        {
+            LockTargetChange.Invoke();
+        }
+
+        
+
+        private void cbTurretTargetingModes_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            TargetModeChange.Invoke();
         }
     }
 }

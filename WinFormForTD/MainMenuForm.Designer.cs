@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnMenuTutorial = new System.Windows.Forms.Button();
             this.btnMenuLvl1 = new System.Windows.Forms.Button();
             this.btnMenuLvl2 = new System.Windows.Forms.Button();
             this.btnMenuExit = new System.Windows.Forms.Button();
@@ -36,17 +35,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // btnMenuTutorial
-            // 
-            this.btnMenuTutorial.Font = new System.Drawing.Font("Roboto Black", 15F, System.Drawing.FontStyle.Bold);
-            this.btnMenuTutorial.Location = new System.Drawing.Point(316, 132);
-            this.btnMenuTutorial.Name = "btnMenuTutorial";
-            this.btnMenuTutorial.Size = new System.Drawing.Size(172, 43);
-            this.btnMenuTutorial.TabIndex = 0;
-            this.btnMenuTutorial.Text = "Tutorial";
-            this.btnMenuTutorial.UseVisualStyleBackColor = true;
-            this.btnMenuTutorial.Click += new System.EventHandler(this.btnMenuTutorial_Click);
             // 
             // btnMenuLvl1
             // 
@@ -120,23 +108,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnMenuSandbox);
             this.Controls.Add(this.btnMenuExit);
             this.Controls.Add(this.btnMenuLvl2);
             this.Controls.Add(this.btnMenuLvl1);
-            this.Controls.Add(this.btnMenuTutorial);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainMenuForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "MainMenuForm";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnMenuTutorial;
         private System.Windows.Forms.Button btnMenuLvl1;
         private System.Windows.Forms.Button btnMenuLvl2;
         private System.Windows.Forms.Button btnMenuExit;

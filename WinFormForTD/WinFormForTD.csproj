@@ -72,6 +72,18 @@
     <Compile Include="TurretInfoForm.Designer.cs">
       <DependentUpon>TurretInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="YouLost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YouLost.Designer.cs">
+      <DependentUpon>YouLost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="YouWon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YouWon.Designer.cs">
+      <DependentUpon>YouWon.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BaseMenu.resx">
       <DependentUpon>BaseMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TurretInfoForm.resx">
       <DependentUpon>TurretInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YouLost.resx">
+      <DependentUpon>YouLost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YouWon.resx">
+      <DependentUpon>YouWon.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

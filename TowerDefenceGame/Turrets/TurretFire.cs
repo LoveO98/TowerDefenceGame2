@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TowerDefenceGame.Enemies;
+using TowerDefenceGame.HelpfulMethods;
 using TowerDefenceGame.Managers;
 using TowerDefenceGame.StateMachines.LevelState;
 using TowerDefenceGame.Structures;
@@ -32,6 +33,7 @@ namespace TowerDefenceGame.Turrets
             _turretGunTex = Assets.turretFireStick;
             _turretInfoForm.gbTurretHideUpg.Visible = true;
         }
+
         public override void PlacedOnStructure(StructureBase structure)
         {
             _placedOnStructure = structure;
@@ -55,7 +57,7 @@ namespace TowerDefenceGame.Turrets
                         //First checking if enemies are even close enough to the turret to be hit since an enemy which isn't getting hit would go through two "Vector2.Distance()" checks. I'm hoping most enemies on the map won't be in range
                         //of the average fire turret so this should be reducing the total amount of computations per frame.
                         if (Vector2.Distance(_levelContext.enemies[i].Centre, _structCentre) > _range) continue;
-                        if (InHBArea(_levelContext.enemies[i], _temp16Point, _temp23Point))
+                        if (InHBArea(_levelContext.enemies[i].Centre, _temp16Point, _temp23Point))
                         {
                             bool kill;
                             float damage;
@@ -64,6 +66,10 @@ namespace TowerDefenceGame.Turrets
                             if (kill) _kills++;
                             //_damageDealt += _levelContext.enemies[i].TakeDamage(_damage, _onTower);
                         }
+                    }
+                    for (int i = 0; _levelContext.disjointedAttacks.Count > i; i++)
+                    {
+                        if (_levelContext.disjointedAttacks[i]._flammable && TarCheck(_levelContext.disjointedAttacks[i], _temp16Point, _temp23Point)) _levelContext.disjointedAttacks[i].SetOnFire();
                     }
                 }
             }
@@ -77,15 +83,30 @@ namespace TowerDefenceGame.Turrets
             }
         }
 
-        public bool InHBArea(EnemyBase enemy, Vector2 p1, Vector2 p2)
+        public bool TarCheck(DisjointedAttackBase tar, Vector2 p1, Vector2 p2)
+        {
+            float tempDistanceFar = Vector2.Distance(tar._pos, p2);
+            if (tempDistanceFar < ((_range / 3) + (tar._range / 2)))
+            {
+                return true;
+            }
+            float tempDistanceNear = Vector2.Distance(tar._pos, p1);
+            if (tempDistanceNear < ((_range / 3) + (tar._range / 2)))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool InHBArea(Vector2 enemy, Vector2 p1, Vector2 p2)
         {
             //Checking furthest point from the turret first since that's where enemies will enter and makes the tower not have to check the closer pos for most enemies. Hopefully at least
-            float tempDistanceFar = Vector2.Distance(enemy.Centre, p2);
+            float tempDistanceFar = Vector2.Distance(enemy, p2);
             if (tempDistanceFar < (_range / 3))
             {
                 return true;
             }
-            float tempDistanceNear = Vector2.Distance(enemy.Centre, p1);
+            float tempDistanceNear = Vector2.Distance(enemy, p1);
             //Even if this point is 1/6th of the range away from the turret i search in an area of 1/3rd of the range here
             //This extra leeway is to avoid enemies right at the turret not getting hit
             if (tempDistanceNear < (_range / 3))

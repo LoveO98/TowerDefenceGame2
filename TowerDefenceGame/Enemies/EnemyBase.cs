@@ -44,7 +44,7 @@ namespace TowerDefenceGame.Enemies
         protected float _speed;
         public float Speed { get { return _speed; } }
 
-        float _speedModifier;
+        float _speedModifier = 1;
         public float SpeedModifier {  get { return _speedModifier; } set { _speedModifier = value; } }
 
         protected float _currentSpeed;
@@ -80,6 +80,7 @@ namespace TowerDefenceGame.Enemies
         protected float _currentCD;
         protected bool _isAttacking;
 
+        float _speedModCountdown = 0;
 
         protected EnemyBase(Vector2 pos, Texture2D tex,  LevelStateMachine levelContext)
         {
@@ -102,6 +103,7 @@ namespace TowerDefenceGame.Enemies
         public void Update(GameTime gameTime)
         {
             _centre = _relativeCentre + _pos;
+            if (_speedModCountdown > 0) RemoveSpeedModifier(gameTime);
             if (Vector2.Distance(_target.StructCentre, _centre) > _attackRange && !_isAttacking)
             {
                 Travel(gameTime);
@@ -120,7 +122,7 @@ namespace TowerDefenceGame.Enemies
         {
             _direction = _target.StructCentre - _pos;
             _direction.Normalize();
-            _pos += _direction * _speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _pos += _direction * _speed * _speedModifier * (float)gameTime.ElapsedGameTime.TotalSeconds;
             _spriteBobbing = (float)Math.Sin(_pos.X) * 3;
         }
 
@@ -187,13 +189,13 @@ namespace TowerDefenceGame.Enemies
             {
                 if (piercing) damage *= 0.75f;
                 _health -= damage;
-                _color = Color.Lerp(Color.White, Color.Red, 1 - (_health / _maxHealth));
                 if (_health <= 0)
                 {
                     damageDone = damage + _health;
                     Die();
                     return (damageDone, true);
                 }
+                _color = Color.Lerp(Color.White, Color.Red, (1 - (_health / _maxHealth)));
                 return (damage, false);
             }
             else
@@ -213,9 +215,11 @@ namespace TowerDefenceGame.Enemies
             if (_health <= 0)
             {
                 damageDone += (remainingDamage + _health);
+                
                 Die();
                 return (damageDone, true);
             }
+            
             return (damageDone + remainingDamage, false);
         }
 
@@ -226,7 +230,7 @@ namespace TowerDefenceGame.Enemies
             {
                 ParticleManager.CreateParticleBottomUp(Assets.debreeTex, _centre, new Vector2(0, 1), 15, 3, 2, 3, 600, 400, 200, 0.1f, 0.5f, 0.2f, 12345, 3, Color.Orange, Color.Gray, Color.Black * 0.5f);
             }
-            _color = Color.Lerp(Color.White, Color.Red, 1 - (_health / _maxHealth));
+            //_color = Color.Lerp(Color.White, Color.Red, 1 - (_health / _maxHealth));
         }
 
         public virtual void DeathParticles()
@@ -251,7 +255,15 @@ namespace TowerDefenceGame.Enemies
         public void AddSpeedModifier(float speedChange)
         {
             _speedModifier = Math.Min(speedChange, _speedModifier);
+            _speedModCountdown = 500;
         }
+
+        public void RemoveSpeedModifier(GameTime gameTime)
+        {
+            _speedModCountdown -= gameTime.ElapsedGameTime.Milliseconds;
+            if(_speedModCountdown < 0) _speedModifier = 1;
+        }
+
 
         internal virtual void AttackParticles()
         {

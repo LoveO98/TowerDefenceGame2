@@ -28,9 +28,9 @@ namespace TowerDefenceGame.StateMachines
 
         public abstract void UpdateState(GameTime gameTime);
 
-        //public abstract void DrawState(SpriteBatch sb);
+        public abstract void DrawState(SpriteBatch sb);
 
-        public abstract void CheckSwitchState();
+        
 
         public void SwitchState(BaseState newState)
         {

@@ -17,31 +17,27 @@ namespace WinFormForTD
             InitializeComponent();
         }
 
-        public bool _exitLevel;
-        public bool _buyTurret;
-        public int _turretNR;
+        
         public delegate void BuyStructureHandler(int nr);
         public event BuyStructureHandler buyStructure;
+        public event Action exitLevel;
+
+        public event Action changeTargeting;
+        public event Action unlockTargeting;
 
         private void btnBaseBuyShort_Click(object sender, EventArgs e)
         {
             buyStructure.Invoke(1);
-            //_buyTurret = true;
-            //_turretNR = 1;
         }
 
         private void btnBaseBuyMedium_Click(object sender, EventArgs e)
         {
             buyStructure.Invoke(2);
-            //_buyTurret = true;
-            //_turretNR = 2;
         }
 
         private void btnBaseBuyLong_Click(object sender, EventArgs e)
         {
             buyStructure.Invoke(3);
-            //_buyTurret = true;
-            //_turretNR = 3;
         }
 
         private void btnBaseBuyTower_Click(object sender, EventArgs e)
@@ -51,7 +47,7 @@ namespace WinFormForTD
 
         private void btnBaseExit_Click(object sender, EventArgs e)
         {
-            _exitLevel = true;
+            exitLevel.Invoke();
         }
 
         private void BaseMenu_Load(object sender, EventArgs e)
@@ -59,6 +55,14 @@ namespace WinFormForTD
             
         }
 
-        
+        private void btnBaseApplyRules_Click(object sender, EventArgs e)
+        {
+            changeTargeting.Invoke();
+        }
+
+        private void btnBaseUnlockAll_Click(object sender, EventArgs e)
+        {
+            unlockTargeting.Invoke();
+        }
     }
 }
