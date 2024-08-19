@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using TowerDefenceGame.Enemies;
 using TowerDefenceGame.Managers;
-using TowerDefenceGame.StateMachines.LevelState;
 using TowerDefenceGame.Structures;
 
 namespace TowerDefenceGame.HelpfulMethods
