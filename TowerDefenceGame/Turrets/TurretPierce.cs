@@ -13,7 +13,7 @@ namespace TowerDefenceGame.Turrets
     internal class TurretPierce : TurretBase
     {
 
-        public TurretPierce(Vector2 pos, LevelStateMachine levelContext) : base(Assets.turretPierce, pos, 50, 120, 600, 650, true, "High caliber", levelContext)
+        public TurretPierce(Vector2 pos, LevelStateMachine levelContext) : base(Assets.turretPierce, pos, 50, 130, 600, 650, true, "High caliber", levelContext)
         {
             targetMode = TargetMode.mostTotHealth;
             _turretTopTex = Assets.turretBrightTopPierce;
@@ -25,8 +25,7 @@ namespace TowerDefenceGame.Turrets
         {
             _placedOnStructure = structure;
             _range *= 1.2f;
-            _damage = 85;
-            _damage = 160;
+            _damage = 170;
         }
 
         public override void AttackParticles()

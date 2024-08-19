@@ -15,9 +15,9 @@ namespace TowerDefenceGame.Enemies
         public WalkingFortressEnemy(Vector2 pos, LevelStateMachine levelContext) : base(pos, Assets.walkingFortressEnemy, levelContext)
         {
             _speed = 10;
-            _health = 800;
+            _health = 1000;
             _maxHealth = _health;
-            _armour = 1500;
+            _armour = 2000;
             _scrapValue = 150;
             _alienScrapValue = 300;
             _detectRange = 500;

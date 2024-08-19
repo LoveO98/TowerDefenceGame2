@@ -183,9 +183,10 @@ namespace TowerDefenceGame.Enemies
         //This is purely for tracking damage more accurately in the turret statistics.
         public virtual (float, bool) TakeDamage(float damage, bool piercing)
         {
-            ParticleManager.CreateStatParticleBottomUp(Assets.pixelCircle, _centre, 20, 0, 0.5f, 0.5f, 0, 0, 0, Color.Magenta, Color.Magenta);
             float remainingDamage = 0;
             float damageDone;
+            if(_health <= 0) return (0, false);
+
             if (_armour <= 0)
             {
                 if (piercing) damage *= 0.75f;
@@ -231,7 +232,6 @@ namespace TowerDefenceGame.Enemies
             {
                 ParticleManager.CreateParticleBottomUp(Assets.debreeTex, _centre, new Vector2(0, 1), 15, 3, 2, 3, 600, 400, 200, 0.1f, 0.5f, 0.2f, 12345, 3, Color.Orange, Color.Gray, Color.Black * 0.5f);
             }
-            //_color = Color.Lerp(Color.White, Color.Red, 1 - (_health / _maxHealth));
         }
 
         public virtual void DeathParticles()
@@ -268,7 +268,7 @@ namespace TowerDefenceGame.Enemies
 
         internal virtual void AttackParticles()
         {
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 5; i++)
             {
                 ParticleManager.CreateParticleBottomUp(Assets.debreeTex, _centre, new Vector2(0, 1), 15, 1, 0.2f, 1.5f, 800, 600, 200, 0.5f, 1f, 0.7f, 12345, 3, Color.LightGray * 0.5f, Color.Gray * 0.4f, Color.Black * 0.2f);
             }

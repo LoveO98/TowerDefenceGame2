@@ -19,9 +19,9 @@ namespace TowerDefenceGame.Enemies
             _maxHealth = _health;
             _armour = 400;
             _scrapValue = 50;
-            _alienScrapValue = 30;
+            _alienScrapValue = 40;
             _detectRange = 700;
-            _attackRange = 100;
+            _attackRange = 80;
             _attackDamage = 30;
             _attackCD = 2000;
         }
