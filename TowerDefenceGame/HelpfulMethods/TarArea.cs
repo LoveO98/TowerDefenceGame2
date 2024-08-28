@@ -68,7 +68,6 @@ namespace TowerDefenceGame.HelpfulMethods
 
         public override void Draw(SpriteBatch sb)
         {
-            Debug.WriteLine("sjgiorwegr");
             sb.Draw(_tex, _pos, null, new Color(Color.Black, 80), 0, new Vector2(10,10), 4.5f, SpriteEffects.None, 0.25f);
         }
     }
