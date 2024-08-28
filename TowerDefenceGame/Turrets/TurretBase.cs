@@ -137,18 +137,19 @@ namespace TowerDefenceGame.Turrets
             _turretInfoForm.cbTurretLockOn.Checked = _lockOnTarget;
             _turretInfoForm.Left = 1245 + Game1._windowPosition.X;
             _turretInfoForm.Top = 770 + Game1._windowPosition.Y;
-            
             _turretInfoForm.cbTurretIgnoreGlobalTargeting.Checked = _globalLock;
         }
 
         public void OnChangeTargetingMode()
         {
             targetMode = (TargetMode)_turretInfoForm.cbTurretTargetingModes.SelectedIndex;
+            _turretInfoForm.cbTurretTargetingModes.SelectedIndex = (int)targetMode;
         }
 
         public void ChangeTargetingMode(int index)
         {
             targetMode = (TargetMode)index;
+            _turretInfoForm.cbTurretTargetingModes.SelectedIndex = (int)targetMode;
         }
 
         public void OnLockGlobal()
@@ -234,7 +235,6 @@ namespace TowerDefenceGame.Turrets
             float tempValue = _inRangeTargets[0].ScrapValue + _inRangeTargets[0].AlienScrapvalue;
             float tempHealth = _inRangeTargets[0].Health + _inRangeTargets[0].Armour;
             _target = _inRangeTargets[0];
-            Debug.WriteLine("Target mode: " + targetMode);
             foreach (EnemyBase enemy in _inRangeTargets)
             {
                 float tempDistance = Vector2.Distance(enemy.Centre, _structCentre);
@@ -435,12 +435,6 @@ namespace TowerDefenceGame.Turrets
             _gunRot = (float)Math.Atan2(_targetDir.Y, _targetDir.X);
         }
 
-        //public override void Draw(SpriteBatch sb)
-        //{
-        //    sb.Draw(_tex, _pos, Color.White);
-        //}
-
-
 
         public override void Draw(SpriteBatch sb)
         {
@@ -449,10 +443,7 @@ namespace TowerDefenceGame.Turrets
             sb.Draw(_turretGunTex, _pos + new Vector2(25,25), null , _color, _gunRot, new Vector2(25,25), 1f, SpriteEffects.None, 0.33f);
         }
 
-        public virtual void DrawTarget(SpriteBatch sb)
-        {
-            sb.Draw(Assets.pixelCircle, _target.Centre - new Vector2(Assets.pixelCircle.Width / 2, Assets.pixelCircle.Height / 2), null, Color.Magenta, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.7f);
-        }
+        
 
         
 

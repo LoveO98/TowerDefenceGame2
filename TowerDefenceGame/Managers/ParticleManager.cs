@@ -60,7 +60,6 @@ namespace TowerDefenceGame.Managers
                 }
             }
 
-            //Debug.WriteLine("BottomUp: " + particlesBottomUp.Count + "  TopDown: " + particlesTopDown.Count);
         }
 
         public void Draw(SpriteBatch sb)

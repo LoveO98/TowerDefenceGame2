@@ -64,7 +64,6 @@ namespace TowerDefenceGame.Turrets
                             (damage, kill) = _levelContext.enemies[i].TakeDamage(_damage, _piercing);
                             _damageDealt += damage;
                             if (kill) _kills++;
-                            //_damageDealt += _levelContext.enemies[i].TakeDamage(_damage, _onTower);
                         }
                     }
                     for (int i = 0; _levelContext.disjointedAttacks.Count > i; i++)

@@ -98,6 +98,7 @@ namespace TowerDefenceGame.StateMachines.LevelState
             _baseMenuForm.lblBaseBuyMediumCostValue.Text = TurretMedium.BuyCost.ToString();
             _baseMenuForm.lblBaseBuyLongCostValue.Text = TurretLong.BuyCost.ToString();
             _baseMenuForm.lblBaseBuyTowerCostValue.Text = TowerStructure.BuyCost.ToString();
+
             _baseMenuForm.Show();
 
             
@@ -250,7 +251,6 @@ namespace TowerDefenceGame.StateMachines.LevelState
                     break;
 
                 case 4:
-                    //if(can afford)
                     if (_scrap < TowerStructure.BuyCost) return;
                     _buyCost = TowerStructure.BuyCost;
                     _addingStructure = true;
