@@ -96,11 +96,8 @@ namespace TowerDefenceGame
             _spriteBatch.Begin(SpriteSortMode.FrontToBack);
             
             _particleManager.Draw(_spriteBatch);
-            //_levelManager.DrawStateMachine(_spriteBatch);
             _gameManager.DrawStateMachine(_spriteBatch);
             _spriteBatch.Draw(_turretFootprints, new Vector2(0, 0), Color.White);
-            //_spriteBatch.Draw(_hitBoxCheck, Vector2.Zero, Color.White);
-            if (counter2 % 2 == 0) _spriteBatch.Draw(Assets.pixelCircle, dotPos, Color.White);
             _spriteBatch.End();
             base.Draw(gameTime);
             counter2++;
